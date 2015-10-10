@@ -18,7 +18,7 @@ with open('Transcription_RX.csv', 'rU') as f:
 
       newrow = row
 
-      new_ratelaw = ratelaw + '*min(RNA_POLYMERASE,1)*ATP*CTP*GTP*UTP/(1+ATP/Km1_tx+CTP/Km2_tx+GTP/Km3_tx+UTP/Km4_tx)'
+      new_ratelaw = ratelaw + '*min(RNA_POLYMERASE, MG_282_MONOMER)*ATP*CTP*GTP*UTP/(1+ATP/Km1_tx+CTP/Km2_tx+GTP/Km3_tx+UTP/Km4_tx)'
 
       newrow[4] = new_ratelaw
 

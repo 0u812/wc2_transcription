@@ -1,7 +1,6 @@
 #import antimony
 import csv
 
-
 out = ''
 
 comps = set()
@@ -40,6 +39,7 @@ for c in comps:
   out = '  const compartment {};\n\n'.format(c) + out
 
 out = 'model transcription()\n' + out
+out = 'function min(x,y)\n  piecewise(x,x<y,y)\nend\n\n' + out
 
 # Reactions
 with open('Transcription_RX.csv', 'rU') as f:

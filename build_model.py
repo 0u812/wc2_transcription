@@ -1,4 +1,4 @@
-import antimony
+#import antimony
 import csv
 
 
@@ -29,6 +29,8 @@ with open('Transcription_SP.csv', 'rU') as f:
     out += '  {} = {};\n'.format(id_, copies)
     # compartment
     out += '  {} in {};\n'.format(id_, comp)
+    # display name
+    out += '  {} is "{}";\n'.format(id_, name)
 
     comps.add(comp)
 
@@ -53,6 +55,8 @@ with open('Transcription_RX.csv', 'rU') as f:
 
     out += '  {}: {}; {};\n'.format(id_, stoich, ratelaw)
     out += '  {};\n'.format(rateparams)
+    # display name
+    out += '  {} is "{}";\n'.format(id_, name)
 
     out += '\n'
 
@@ -60,3 +64,6 @@ out += 'end'
 
 print(out)
 #print(comps)
+
+with open('transcription.sb', 'w') as f:
+  f.write(out)

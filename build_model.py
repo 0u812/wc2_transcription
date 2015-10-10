@@ -37,13 +37,26 @@ with open('Transcription_SP.csv', 'rU') as f:
 for c in comps:
   out = '  const compartment {};\n\n'.format(c) + out
 
-out = 'model transcription\n' + out
+out = 'model transcription()\n' + out
 
 # Reactions
 with open('Transcription_RX.csv', 'rU') as f:
   r = csv.reader(f, delimiter=',', dialect=csv.excel_tab)
   for row in list(r)[1:]:
-    
+    #id_ = row[0][14:]
+    id_ = row[0]
+    print(id_)
+    name = row[1]
+    stoich = row[2]
+    ratelaw = row[4]
+    rateparams = row[5]
 
-#print(out)
+    out += '  {}: {}; {};\n'.format(id_, stoich, ratelaw)
+    out += '  {};\n'.format(rateparams)
+
+    out += '\n'
+
+out += 'end'
+
+print(out)
 #print(comps)

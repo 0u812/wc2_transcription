@@ -6,7 +6,7 @@ r.setIntegrator('gillespie')
 
 print(r.getReactionRates())
 
-res = r.simulate(0,10,10, ['ATP', 'RNA_POLYMERASE'])
+res = r.simulate(0,1,10, ['time', 'ATP', 'GTP', 'CTP', 'UTP'])
 
-#r.plot()
+r.plot()
 print(res)

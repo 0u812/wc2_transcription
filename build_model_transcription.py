@@ -38,7 +38,7 @@ with open('Transcription_SP.csv', 'rU') as f:
 for c in comps:
   out = '  const compartment {};\n\n'.format(c) + out
 
-out = '  Km1_tx = 10;\n  Km2_tx = 10;\n  Km3_tx = 10;\n  Km4_tx = 10;\n' + out
+out = '  Km1_tx = 1;\n  Km2_tx = 1;\n  Km3_tx = 1;\n  Km4_tx = 1;\n' + out
 out = 'model transcription()\n' + out
 out = 'function min(x,y)\n  piecewise(x,x<y,y)\nend\n\n' + out
 

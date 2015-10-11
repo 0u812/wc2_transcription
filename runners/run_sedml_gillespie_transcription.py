@@ -1,4 +1,5 @@
 import tesedml
 
 doc = tesedml.openDoc('sedml_webtools_gillespie_transcription.xml')
-doc.run()
+r = doc.run()[0]
+print(r)

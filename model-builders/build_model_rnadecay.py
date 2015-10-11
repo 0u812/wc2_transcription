@@ -25,7 +25,7 @@ with open('../spreadsheets/RNADecay_SP.csv', 'rU') as f:
 
     out += '  var species {};\n'.format(id_)
     # initial conc.
-    out += '  {} = {};\n'.format(id_, copies)
+    out += '  {} = {}/{};\n'.format(id_, copies, comp)
     # compartment
     out += '  {} in {};\n'.format(id_, comp)
     # display name
@@ -39,6 +39,7 @@ for c in comps:
   out = '  const compartment {};\n\n'.format(c) + out
 
 out = '  Km_RNA_decay = 5;\n' + out
+out = '  unit substance = item\n\n' + out
 out = 'model rnadecay()\n' + out
 out = 'function min(x,y)\n  piecewise(x,x<y,y)\nend\n\n' + out
 

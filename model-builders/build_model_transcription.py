@@ -25,7 +25,8 @@ with open('../spreadsheets/Transcription_SP.csv', 'rU') as f:
 
     out += '  var species {};\n'.format(id_)
     # initial conc.
-    out += '  {} = {} items;\n'.format(id_, copies)
+    out += '  {} = {}/{};\n'.format(id_, copies, comp)
+    #out += '  {} = {} items;\n'.format(id_, copies, comp)
     # compartment
     out += '  {} in {};\n'.format(id_, comp)
     # display name
@@ -39,6 +40,7 @@ for c in comps:
   out = '  const compartment {};\n\n'.format(c) + out
 
 out = '  Km1_tx = 1;\n  Km2_tx = 1;\n  Km3_tx = 1;\n  Km4_tx = 1;\n' + out
+out = '  unit substance = item\n\n' + out
 out = 'model transcription()\n' + out
 out = 'function min(x,y)\n  piecewise(x,x<y,y)\nend\n\n' + out
 

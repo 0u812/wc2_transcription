@@ -1,6 +1,6 @@
 import roadrunner as rr
 
-r = rr.RoadRunner('transcription_sbml.xml')
+r = rr.RoadRunner('../model/transcription_sbml.xml')
 
 r.setIntegrator('gillespie')
 

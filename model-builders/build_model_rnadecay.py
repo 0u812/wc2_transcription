@@ -6,7 +6,7 @@ out = ''
 comps = set()
 
 # Species
-with open('RNADecay_SP.csv', 'rU') as f:
+with open('../spreadsheets/RNADecay_SP.csv', 'rU') as f:
   r = csv.reader(f, delimiter=',', dialect=csv.excel_tab)
   for row in list(r)[1:]:
     #print(row)
@@ -43,7 +43,7 @@ out = 'model rnadecay()\n' + out
 out = 'function min(x,y)\n  piecewise(x,x<y,y)\nend\n\n' + out
 
 # Reactions
-with open('RNADecay_RX.csv', 'rU') as f:
+with open('../spreadsheets/RNADecay_RX.csv', 'rU') as f:
   r = csv.reader(f, delimiter=',', dialect=csv.excel_tab)
   for row in list(r)[1:]:
     #id_ = row[0][14:]
@@ -66,5 +66,5 @@ out += 'end'
 print(out)
 #print(comps)
 
-with open('rnadecay.sb', 'w') as f:
+with open('../model/rnadecay.sb', 'w') as f:
   f.write(out)

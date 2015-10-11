@@ -1,6 +1,6 @@
 import antimony
 
-with open('rnadecay.sb') as f:
+with open('../model/rnadecay.sb') as f:
   sb = f.read()
 
 print(sb)
@@ -16,5 +16,5 @@ print(antimony.getModuleNames()[-1])
 
 sbml = antimony.getSBMLString(antimony.getModuleNames()[-1])
 
-with open('rnadecay_sbml.xml', 'w') as f:
+with open('../model/rnadecay_sbml.xml', 'w') as f:
   f.write(sbml)

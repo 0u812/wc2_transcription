@@ -6,7 +6,7 @@ out = ''
 comps = set()
 
 # Species
-with open('Transcription_SP.csv', 'rU') as f:
+with open('../spreadsheets/Transcription_SP.csv', 'rU') as f:
   r = csv.reader(f, delimiter=',', dialect=csv.excel_tab)
   for row in list(r)[1:]:
     #print(row)
@@ -43,7 +43,7 @@ out = 'model transcription()\n' + out
 out = 'function min(x,y)\n  piecewise(x,x<y,y)\nend\n\n' + out
 
 # Reactions
-with open('Transcription_RX.csv', 'rU') as f:
+with open('../spreadsheets/Transcription_RX.csv', 'rU') as f:
   r = csv.reader(f, delimiter=',', dialect=csv.excel_tab)
   for row in list(r)[1:]:
     #id_ = row[0][14:]
@@ -66,5 +66,5 @@ out += 'end'
 print(out)
 #print(comps)
 
-with open('transcription.sb', 'w') as f:
+with open('../model/transcription.sb', 'w') as f:
   f.write(out)

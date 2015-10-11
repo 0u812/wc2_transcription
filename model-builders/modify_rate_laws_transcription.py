@@ -1,14 +1,14 @@
 import csv
 
 # Reactions
-with open('Transcription_RX.csv', 'rU') as f:
-  with open('Transcription_RX_mod.csv', 'w') as wf:
+with open('../spreadsheets/Transcription_RX.csv', 'rU') as f:
+  with open('../spreadsheets/Transcription_RX_mod.csv', 'w') as wf:
     r = csv.reader(f, delimiter=',', dialect=csv.excel_tab)
     rows = list(r)
 
     w = csv.writer(wf, dialect=csv.excel)
     w.writerow(rows[0])
-    
+
     for row in rows[1:]:
       id_ = row[0]
       name = row[1]

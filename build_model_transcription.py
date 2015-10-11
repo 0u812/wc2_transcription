@@ -25,7 +25,7 @@ with open('Transcription_SP.csv', 'rU') as f:
 
     out += '  var species {};\n'.format(id_)
     # initial conc.
-    out += '  {} = {};\n'.format(id_, copies)
+    out += '  {} = {} items;\n'.format(id_, copies)
     # compartment
     out += '  {} in {};\n'.format(id_, comp)
     # display name

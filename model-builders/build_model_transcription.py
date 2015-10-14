@@ -5,6 +5,8 @@ out = ''
 
 comps = set()
 
+id_map = {}
+
 # Species
 with open('../spreadsheets/Transcription_SP.csv', 'rU') as f:
   r = csv.reader(f, delimiter=',', dialect=csv.excel_tab)
@@ -22,6 +24,8 @@ with open('../spreadsheets/Transcription_SP.csv', 'rU') as f:
     tp = row[4]
     # Role
     role = row[5]
+
+    id_map[id_] = id_ + '__' + comp
 
     out += '  var species {};\n'.format(id_)
     # initial conc.
@@ -64,6 +68,10 @@ with open('../spreadsheets/Transcription_RX.csv', 'rU') as f:
     out += '\n'
 
 out += 'end'
+
+# perform species name substitution
+for k,v in id_map.iteritems():
+  out = out.replace(k,v)
 
 print(out)
 #print(comps)

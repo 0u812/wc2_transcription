@@ -25,16 +25,18 @@ with open('../spreadsheets/Transcription_SP.csv', 'rU') as f:
     # Role
     role = row[5]
 
+    new_id = id_ + '__' + comp
+
     id_map[id_] = id_ + '__' + comp
 
-    out += '  var species {};\n'.format(id_)
+    out += '  var species {};\n'.format(new_id)
     # initial conc.
-    out += '  {} = {}/{};\n'.format(id_, copies, comp)
-    #out += '  {} = {} items;\n'.format(id_, copies, comp)
+    out += '  {} = {}/{};\n'.format(new_id, copies, comp)
+    #out += '  {} = {} items;\n'.format(new_id, copies, comp)
     # compartment
-    out += '  {} in {};\n'.format(id_, comp)
+    out += '  {} in {};\n'.format(new_id, comp)
     # display name
-    out += '  {} is "{}";\n'.format(id_, name)
+    out += '  {} is "{}";\n'.format(new_id, name)
 
     comps.add(comp)
 
@@ -48,19 +50,30 @@ out = '  unit substance = item\n\n' + out
 out = 'model transcription()\n' + out
 out = 'function min(x,y)\n  piecewise(x,x<y,y)\nend\n\n' + out
 
+import re
+
 # Reactions
 with open('../spreadsheets/Transcription_RX.csv', 'rU') as f:
   r = csv.reader(f, delimiter=',', dialect=csv.excel_tab)
   for row in list(r)[1:]:
     #id_ = row[0][14:]
     id_ = row[0]
-    print(id_)
     name = row[1]
     stoich = row[2]
     ratelaw = row[4]
     rateparams = row[5]
 
-    out += '  {}: {}; {};\n'.format(id_, stoich, ratelaw)
+    # perform species name conversion on stoichiometry
+    new_stoich = stoich
+    for k,v in id_map.iteritems():
+      new_stoich = re.sub(r'\b{}\b'.format(k),v,new_stoich)
+
+    # perform species name conversion on ratelaw
+    new_ratelaw = ratelaw
+    for k,v in id_map.iteritems():
+      new_ratelaw = re.sub(r'\b{}\b'.format(k),v,new_ratelaw)
+
+    out += '  {}: {}; {};\n'.format(id_, new_stoich, new_ratelaw)
     out += '  {};\n'.format(rateparams)
     # display name
     out += '  {} is "{}";\n'.format(id_, name)
@@ -68,10 +81,6 @@ with open('../spreadsheets/Transcription_RX.csv', 'rU') as f:
     out += '\n'
 
 out += 'end'
-
-# perform species name substitution
-for k,v in id_map.iteritems():
-  out = out.replace(k,v)
 
 print(out)
 #print(comps)
